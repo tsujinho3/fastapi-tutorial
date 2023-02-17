@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+    app:
+        build:
+            context: ./${APP_NAME}
+            dockerfile: ./base.dockerfile
+        image: ${COMPOSE_PROJECT_NAME}-${APP_NAME}
+        container_name: ${COMPOSE_PROJECT_NAME}-${APP_NAME}
+        hostname: ${APP_NAME}
+        networks:
+            - default
+        # ports:
+        #     - "8000:8000"
+        working_dir: "/home/rootless/src"
+        tty: true
+        volumes:
+            - ../src:/home/rootless/src
+        # environment:
+        #     DB_NAME: test-db
+        #     DB_USER: rootless
+        #     DB_PASSWORD: rootless
+        #     DB_HOST: mysql
+        #     DB_PORT: 3306
+
+    #     depends_on:
+    #         - mysql
+    # mysql:
+    #     build:
+    #         context: ./${DB_NAME}
+    #         dockerfile: ./base.dockerfile
+    #     image: ${COMPOSE_PROJECT_NAME}-${DB_NAME}
+    #     container_name: ${COMPOSE_PROJECT_NAME}-${DB_NAME}
+    #     hostname: ${DB_NAME}
+    #     restart: always
+    #     networks:
+    #         - default
+    #     ports:
+    #         - 3306:3306
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: root
+    #         MYSQL_DATABASE: test-db
+    #         MYSQL_USER: rootless
+    #         MYSQL_PASSWORD: rootless
+    #         TZ: "UTC"
+
+networks:
+    default:
+        name: ${COMPOSE_PROJECT_NAME}
+        driver: bridge
