@@ -57,7 +57,7 @@ async def read_file(file_path: str):
 
 
 @app.get("/fake-items/")
-async def read_fake_tem(skip: int = 0, limit: int = 10):
+async def read_fake_item(skip: int = 0, limit: int = 10):
     return fake_items_db[skip : skip + limit]
 
 
