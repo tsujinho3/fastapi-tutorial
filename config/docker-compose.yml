@@ -15,7 +15,8 @@ services:
         tty: true
         volumes:
             - ../src:/home/rootless/src
-        # environment:
+        environment:
+            WATCHFILES_FORCE_POLLING: true
         #     DB_NAME: test-db
         #     DB_USER: rootless
         #     DB_PASSWORD: rootless
