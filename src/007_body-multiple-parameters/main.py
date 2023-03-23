@@ -39,7 +39,12 @@ async def update_body_item(
     importance: int = Body(gt=0),
     q: str | None = None,
 ):
-    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+    results: dict[str, str | int | Item | User | None] = {
+        "item_id": item_id,
+        "item": item,
+        "user": user,
+        "importance": importance,
+    }
     if q:
         results.update({"q": q})
     return results
