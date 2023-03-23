@@ -1,3 +1,4 @@
 fastapi[all]==0.*
 uvicorn[standard]==0.*
 pydantic==1.*
+sqlmodel==0.*
