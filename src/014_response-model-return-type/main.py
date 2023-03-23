@@ -15,7 +15,7 @@ class Item(BaseModel):
     tags: list[str] = []
 
 
-items = {
+items: dict[str, dict[str, str | float | list[str | None] | None]] = {
     "foo": {"name": "Foo", "price": 50.2},
     "bar": {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
     "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 10.5, "tags": []},
@@ -113,7 +113,7 @@ async def get_teleport() -> RedirectResponse:
 
 
 @app.get("/none-portal", response_model=None)
-async def get_none_portal(teleport: bool = False) -> Response | dict:
+async def get_none_portal(teleport: bool = False) -> Response | dict[str, str]:
     if teleport:
         return RedirectResponse(url="https://www.youtube.com/watch?v=dQw4w9WgXcQ")
     return {"message": "Here's your interdimensional portal."}
